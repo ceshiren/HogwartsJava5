@@ -1,0 +1,13 @@
+groupList:
+  - groupName: group01
+    resultList:
+    - caseName: 'case_1_1'
+      result: true
+    - caseName: 'case_1_2'
+      result: false
+  - groupName: group02
+    resultList:
+    - caseName: 'case_2_1'
+      result: true
+    - caseName: 'case_2_2'
+      result: false

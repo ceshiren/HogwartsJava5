@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Third suite" verbose="1" parallel="methods" thread-count="4"  time-out="60000">
+    <test name="TableLockTest">
+        <classes>
+            <class name="xunit.testng.testngexaples.TestNGDemo_2_2_mixParallel" />
+        </classes>
+    </test>
+</suite>
