@@ -71,6 +71,14 @@
             <artifactId>allure-testng</artifactId>
             <version>2.13.6</version>
         </dependency>
+
+
+        <!--selenium-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.141.59</version>
+        </dependency>
     </dependencies>
 
     <build>
