@@ -23,14 +23,14 @@ public class WechatTest {
     static WebDriver webDriver;
     @BeforeAll
     public static void init(){
-        System.setProperty("webdriver.chrome.driver", "/Users/ashin/work/devruntime/chromedriver/89.0.4389/chromedriver");
+//        System.setProperty("webdriver.chrome.driver", "/Users/ashin/work/devruntime/chromedriver/89.0.4389/chromedriver");
         webDriver=new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterAll
     public static void tearDown(){
-        webDriver.quit();
+//        webDriver.quit();
     }
 
 
@@ -42,6 +42,7 @@ public class WechatTest {
             Set<Cookie> cookies = webDriver.manage().getCookies();
             webDriver.navigate().refresh();
             ObjectMapper objectMapper=new ObjectMapper(new YAMLFactory());
+            //todo: 使用getResource代替
             objectMapper.writeValue(new File("cookie.yaml"),cookies);
             cookies.forEach(cookie-> System.out.println(cookie.getName()+":"+cookie.getValue()));
 
@@ -73,7 +74,7 @@ public class WechatTest {
 
 
 
-           Thread.sleep(10000);
+//           Thread.sleep(10000);
         } catch (Exception e) {
             e.printStackTrace();
         }
