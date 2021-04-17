@@ -33,12 +33,22 @@ public class MemberTest {
 
     @Test
     void addLink(){
+        //测试数据
         String accountId="seveniruby_"+System.currentTimeMillis();
         String username="seveniruby";
         String mobile=String.valueOf(System.currentTimeMillis()).substring(0, 11);
+
+        //测试步骤
         String res=new WeWork().startWeb().login().toMemberAdd().add(
                 username, accountId, mobile, null
         ).search(accountId).getMember();
+        //断言
         assertThat(res, equalTo(username));
+    }
+
+    @Test
+    void departAdd(){
+        String departName="dx5_" + System.currentTimeMillis();
+        new WeWork().startWeb().login().toContactPage().addDepart(departName, "定向5期");
     }
 }

@@ -5,18 +5,21 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 
-public class ContactPage {
-    WebDriver driver;
+public class ContactPage extends BasePage {
 
     public ContactPage(WebDriver webDriver) {
-        driver = webDriver;
+        super(webDriver);
     }
 
     public ContactPage add(String name, String account, String mobile, HashMap<String, String> data) {
-        driver.findElement(By.name("username")).sendKeys(name);
-        driver.findElement(By.name("acctid")).sendKeys(account);
-        driver.findElement(By.name("mobile")).sendKeys(mobile);
-        driver.findElement(By.linkText("保存")).click();
+//        driver.findElement(By.name("username")).sendKeys(name);
+        sendKeys(By.name("username"), name);
+//        driver.findElement(By.name("acctid")).sendKeys(account);
+        sendKeys(By.name("acctid"), account);
+//        driver.findElement(By.name("mobile")).sendKeys(mobile);
+        sendKeys(By.name("mobile"), mobile);
+//        driver.findElement(By.linkText("保存")).click();
+        click(By.linkText("保存"));
 
         return this;
 
@@ -46,8 +49,18 @@ public class ContactPage {
     }
 
     public String getMember() {
-        String name=driver.findElement(By.cssSelector(".member_display_cover_detail_name")).getText();
+        String name = driver.findElement(By.cssSelector(".member_display_cover_detail_name")).getText();
         return name;
+    }
+
+    public void addDepart(String name, String parent) {
+        click(By.linkText("添加"));
+        click(By.linkText("添加部门"));
+        sendKeys(By.name("name"), name);
+        click(By.linkText("选择所属部门"));
+//        click(By.linkText("霍格沃兹学院"));
+        driver.findElement(By.tagName("form")).findElement(By.linkText(parent)).click();
+        click(By.linkText("确定"));
     }
 }
 

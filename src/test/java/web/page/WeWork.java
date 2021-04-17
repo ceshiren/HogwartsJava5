@@ -16,9 +16,9 @@ public class WeWork {
     WebDriver driver;
 
     public WeWork startWeb() {
+        //todo: 支持多浏览器
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://work.weixin.qq.com/wework_admin/frame");
         return this;
     }
 
