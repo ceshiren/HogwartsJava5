@@ -59,6 +59,7 @@ public class ContactPage extends BasePage {
         sendKeys(By.name("name"), name);
         click(By.linkText("选择所属部门"));
 //        click(By.linkText("霍格沃兹学院"));
+        //避免使用滚动
         driver.findElement(By.tagName("form")).findElement(By.linkText(parent)).click();
         click(By.linkText("确定"));
     }
