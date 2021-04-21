@@ -7,6 +7,16 @@
     <groupId>com.hogwarts</groupId>
     <artifactId>hogwartsjava5</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+
     <dependencies>
         <!--junit-->
         <dependency>
@@ -79,7 +89,23 @@
             <artifactId>selenium-server</artifactId>
             <version>3.141.59</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+<!--        <dependency>-->
+<!--            <groupId>io.appium</groupId>-->
+<!--            <artifactId>java-client</artifactId>-->
+<!--            <version>7.5.1</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.github.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>7.5.1</version>
+        </dependency>
+
     </dependencies>
+
+
 
     <build>
         <plugins>
@@ -107,5 +133,8 @@
 <!--            </plugin>-->
         </plugins>
     </build>
+
+
+
 
 </project>
