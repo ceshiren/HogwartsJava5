@@ -1,18 +1,25 @@
 package app.page;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 
-public class ContactPage extends BasePage{
+public class ContactPage extends BasePage {
+
+    //    private By managerButton = By.xpath("(//android.widget.TextView)[3]");
+    private By managerButton = By.id("h8l");
+
+
     public ContactPage(AppiumDriver<MobileElement> appiumDriver) {
         super(appiumDriver);
     }
 
-    public ContactPage addPerson(){
+    public ContactPage addPerson() {
 //        click(By.cssSelector(""))
 
-        click(By.xpath("(//android.widget.TextView)[3]"));
+
+        click(managerButton);
         click(By.cssSelector("*[text='添加成员']"));
         click(By.cssSelector("*[text*='手动输入']"));
         sendKeys(By.xpath("(//android.widget.EditText)[1]"), "seveniruby");
@@ -24,11 +31,19 @@ public class ContactPage extends BasePage{
 
     }
 
-    public void addDepart(){
+
+    public void searchDepart() {
 
     }
 
-    public PersonPage searchPerson(){
+    public DepartPage toDepart(String name) {
+        click(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"" +
+                        name + "\").instance(0));"));
+        return new DepartPage(driver);
+    }
+
+    public PersonPage searchPerson() {
         return new PersonPage(driver);
     }
 }

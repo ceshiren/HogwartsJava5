@@ -36,7 +36,6 @@ public class BasePage {
             } else {
                 retryTimes = 0;
                 return false;
-
             }
 
         }
