@@ -1,0 +1,9 @@
+name: search
+before_all: []
+after_all: []
+steps:
+  - get
+  - click
+  - sendkeys
+  - assert
+
