@@ -1,9 +1,9 @@
 name: search
 before_all: [ ]
 after_all: [ ]
-data:
-  - 内推 BAT
-  - 定向班第5期
+#data:
+#  - 内推 BAT
+#  - 定向班第5期
 steps:
   - chrome:
   - get: https://ceshiren.com

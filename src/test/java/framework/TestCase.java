@@ -38,30 +38,61 @@ public class TestCase {
                 String action = entry.getKey().toLowerCase();
                 Object value = entry.getValue();
 
-                if (action.equals("get")) {
-                    driver.get((String) value);
-                } else if (action.equals("find")) {
-                    ArrayList<String> values = (ArrayList<String>) value;
-                    String locator_by = values.get(0);
-                    String locator_value = values.get(1);
+                switch (action) {
+                    case "get":
+                        driver.get((String) value);
+                        break;
+                    case "find":
+                        ArrayList<String> values = (ArrayList<String>) value;
+                        String locator_by = values.get(0);
+                        String locator_value = values.get(1);
 
-                    if (locator_by.equals("id")) {
-                        default_by.set(By.id(locator_value));
-                    } else if (locator_by.equals("css")) {
-                        default_by.set(By.cssSelector(locator_value));
-                    }
-
-                } else if (action.equals("click")) {
-                    driver.findElement(default_by.get()).click();
-                } else if (action.equals("sendkeys")) {
-                    String keys = (String) value;
-                    driver.findElement(default_by.get()).sendKeys(keys);
-                } else if (action.equals("chrome")) {
-                    driver = new ChromeDriver();
-                } else if (action.equals("wait_imp")) {
-                    Integer seconds = (Integer) value;
-                    driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+                        if (locator_by.equals("id")) {
+                            default_by.set(By.id(locator_value));
+                        } else if (locator_by.equals("css")) {
+                            default_by.set(By.cssSelector(locator_value));
+                        }
+                        break;
+                    case "click":
+                        driver.findElement(default_by.get()).click();
+                        break;
+                    case "sendkeys":
+                        String keys = (String) value;
+                        driver.findElement(default_by.get()).sendKeys(keys);
+                        break;
+                    case "chrome":
+                        driver = new ChromeDriver();
+                        break;
+                    case "wait_imp":
+                        Integer seconds = (Integer) value;
+                        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+                        break;
                 }
+//
+//                if (action.equals("get")) {
+//                    driver.get((String) value);
+//                } else if (action.equals("find")) {
+//                    ArrayList<String> values = (ArrayList<String>) value;
+//                    String locator_by = values.get(0);
+//                    String locator_value = values.get(1);
+//
+//                    if (locator_by.equals("id")) {
+//                        default_by.set(By.id(locator_value));
+//                    } else if (locator_by.equals("css")) {
+//                        default_by.set(By.cssSelector(locator_value));
+//                    }
+//
+//                } else if (action.equals("click")) {
+//                    driver.findElement(default_by.get()).click();
+//                } else if (action.equals("sendkeys")) {
+//                    String keys = (String) value;
+//                    driver.findElement(default_by.get()).sendKeys(keys);
+//                } else if (action.equals("chrome")) {
+//                    driver = new ChromeDriver();
+//                } else if (action.equals("wait_imp")) {
+//                    Integer seconds = (Integer) value;
+//                    driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+//                }
             });
         });
     }
