@@ -8,11 +8,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+
 
 public class POBasePage {
     public String name;
@@ -29,19 +31,56 @@ public class POBasePage {
         /**
          * 从po的yaml文件中读取数据，并生成一个BasePage的实例
          */
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        POBasePage page = null;
-        try {
-            page = mapper.readValue(new File(name), POBasePage.class);
-            page.driver=webDriver;
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        POBasePage page = null;
+
+        String path = String.format("src/test/java/framework/po/%s.yaml", name);
+        if (new File(path).exists()) {
+            page = loadFromFile(path);
+
+        } else {
+            page = loadFromClassloader(name);
         }
+
+        page.driver = webDriver;
         return page;
     }
 
+    public static POBasePage loadFromFile(String path) {
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
+        try {
+            return mapper.readValue(new File(path), POBasePage.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static POBasePage loadFromClassloader(String className) {
+        /**利用反射冲生成page实例*/
+        try {
+            return (POBasePage) Class.forName(className).getDeclaredConstructor().newInstance();
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void runPOMethod(String methodName) {
+
+        if (methods == null ){
+            try {
+                this.getClass().getMethod(methodName).invoke(this, null);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
         AtomicReference<By> default_by = new AtomicReference<>();
 
         methods.get(methodName).forEach(step -> {
@@ -63,6 +102,8 @@ public class POBasePage {
                             default_by.set(By.id(locator_value));
                         } else if (locator_by.equals("css")) {
                             default_by.set(By.cssSelector(locator_value));
+                        } else if (locator_by.equals("link_text")){
+                            default_by.set(By.partialLinkText(locator_value));
                         }
                         break;
                     case "click":

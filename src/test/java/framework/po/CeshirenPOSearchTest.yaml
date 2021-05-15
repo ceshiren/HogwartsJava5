@@ -8,7 +8,12 @@ steps:
   - main_page.new: CeshirenPOMainPage
   - main_page.init:
   - main_page.search: [ 内推 BAT ]
-  - search_page.new: CeshirenPOSearchPage
+#编程模式
+  - search_page.new: framework.po.CeshirenPOCodeSearchPage
   - search_page.get_first_title:
   - assertThat: [ title, contains: [ 内推 BAT ] ]
+#数据风格
+#  - search_page.new: CeshirenPOSearchPage
+#  - search_page.get_first_title:
+#  - assertThat: [ title, contains: [ 内推 BAT ] ]
 

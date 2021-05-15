@@ -8,3 +8,5 @@ methods:
     - click:
     - find: [ id, search-term ]
     - sendkeys: 内推 BAT
+    - find: [ link_text, 选项 ]
+    - click:

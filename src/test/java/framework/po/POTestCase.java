@@ -23,6 +23,9 @@ public class POTestCase {
     public List<HashMap<String, Object>> steps;
 
     public void run() {
+        /**
+         * 运行测试用例的入口
+         */
         AtomicReference<By> default_by = new AtomicReference<>();
         AtomicReference<POBasePage> lastPage = new AtomicReference<>();
 
@@ -42,17 +45,13 @@ public class POTestCase {
 
                         if (lastPage.get() == null) {
                             currentPage = POBasePage.load(
-                                    String.format("src/test/java/framework/po/%s.yaml",
-                                            value
-                                    ),
+                                    (String) value,
                                     null
                             );
 
                         } else {
                             currentPage = POBasePage.load(
-                                    String.format("src/test/java/framework/po/%s.yaml",
-                                            value
-                                    ),
+                                    (String) value,
                                     lastPage.get().driver
                             );
 
