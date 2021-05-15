@@ -1,0 +1,5 @@
+name: SearchPage
+methods:
+  get_first_title:
+    - find: [ css, .topic-titl ]
+    - getText: title

@@ -1,0 +1,14 @@
+name: search
+before_all: [ ]
+after_all: [ ]
+#data:
+#  - 内推 BAT
+#  - 定向班第5期
+steps:
+  - main_page.new: CeshirenPOMainPage
+  - main_page.init:
+  - main_page.search: [ 内推 BAT ]
+  - search_page.new: CeshirenPOSearchPage
+  - search_page.get_first_title:
+  - assertThat: [ title, contains: [ 内推 BAT ] ]
+

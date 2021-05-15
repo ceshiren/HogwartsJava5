@@ -1,4 +1,4 @@
-package framework;
+package framework.classic;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +29,6 @@ public class TestCase {
     public List<HashMap<String, Object>> steps;
 
     public void run() {
-        System.out.println(steps);
         AtomicReference<By> default_by = new AtomicReference<>();
 
         steps.forEach(step -> {

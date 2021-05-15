@@ -1,0 +1,10 @@
+name: MainPage
+methods:
+  init:
+    - chrome:
+    - get: https://ceshiren.com
+  search:
+    - find: [ id, search-button ]
+    - click:
+    - find: [ id, search-term ]
+    - sendkeys: 内推 BAT
