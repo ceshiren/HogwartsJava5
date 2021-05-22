@@ -13,7 +13,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 
 public class WireMockRecordTest {
     @Test
-    void mock() throws IOException {
+    void record() throws IOException {
         //WireMock server启动
         WireMockServer wireMockServer = new WireMockServer(
                 wireMockConfig()
