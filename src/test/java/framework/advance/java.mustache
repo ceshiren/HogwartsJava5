@@ -1,0 +1,6 @@
+{{#actions}}
+    {{#by}}
+        element=driver.find_element("{{by}}", "{{& value}}")
+    {{/by}}
+        element.{{action}}({{#keys}}"{{keys}}"{{/keys}})
+{{/actions}}

@@ -1,0 +1,11 @@
+actions:
+- by: xpath
+  value: //*[@text="Invoke Search"]
+  location: [ x, y ]
+  action: click
+- by: id
+  value: search_box
+  location: [ x, y ]
+  action: click
+- action: send_keys
+  keys: 12ab
